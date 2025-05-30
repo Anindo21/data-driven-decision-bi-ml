@@ -1,0 +1,5 @@
+TransactionTypeId,Type
+1,DEBIT
+2,TRANSFER
+3,CASH
+4,PAYMENT

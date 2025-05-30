@@ -1,0 +1,14 @@
+ShippingId,ShippingMode,DaysForShippingReal,DaysForShipmentScheduled
+1,Standard Class,3,4
+2,Standard Class,5,4
+3,Standard Class,4,4
+4,Standard Class,2,4
+5,Standard Class,6,4
+6,First Class,2,1
+7,Second Class,3,2
+8,Second Class,6,2
+9,Second Class,5,2
+10,Second Class,4,2
+11,Same Day,0,0
+12,Second Class,2,2
+13,Same Day,1,0

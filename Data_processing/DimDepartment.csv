@@ -1,0 +1,39 @@
+DepartmentId,DepartmentName,Market
+2,Fitness,Pacific Asia
+4,Apparel,Pacific Asia
+5,Golf,Pacific Asia
+3,Footwear,USCA
+4,Apparel,USCA
+3,Footwear,Africa
+5,Golf,Africa
+6,Outdoors,Africa
+3,Footwear,Europe
+4,Apparel,Europe
+5,Golf,Europe
+6,Outdoors,Europe
+3,Footwear,LATAM
+4,Apparel,LATAM
+5,Golf,LATAM
+6,Outdoors,LATAM
+7,Fan Shop,LATAM
+2,Fitness,LATAM
+4,Apparel,Africa
+7,Fan Shop,Africa
+10,Technology,Europe
+2,Fitness,Europe
+5,Golf,USCA
+6,Outdoors,USCA
+2,Fitness,Africa
+3,Footwear,Pacific Asia
+6,Outdoors,Pacific Asia
+2,Fitness,USCA
+7,Fan Shop,Europe
+8,Book Shop,Europe
+9,Discs Shop,Europe
+7,Fan Shop,Pacific Asia
+10,Technology,Pacific Asia
+11,Pet Shop,Pacific Asia
+12,Health and Beauty ,Pacific Asia
+9,Discs Shop,Pacific Asia
+7,Fan Shop,USCA
+8,Book Shop,Pacific Asia
