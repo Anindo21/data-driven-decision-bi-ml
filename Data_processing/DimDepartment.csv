@@ -1,39 +1,39 @@
-DepartmentId,DepartmentName,Market
-2,Fitness,Pacific Asia
-4,Apparel,Pacific Asia
-5,Golf,Pacific Asia
-3,Footwear,USCA
-4,Apparel,USCA
-3,Footwear,Africa
-5,Golf,Africa
-6,Outdoors,Africa
-3,Footwear,Europe
-4,Apparel,Europe
-5,Golf,Europe
-6,Outdoors,Europe
-3,Footwear,LATAM
-4,Apparel,LATAM
-5,Golf,LATAM
-6,Outdoors,LATAM
-7,Fan Shop,LATAM
-2,Fitness,LATAM
-4,Apparel,Africa
-7,Fan Shop,Africa
-10,Technology,Europe
-2,Fitness,Europe
-5,Golf,USCA
-6,Outdoors,USCA
-2,Fitness,Africa
-3,Footwear,Pacific Asia
-6,Outdoors,Pacific Asia
-2,Fitness,USCA
-7,Fan Shop,Europe
-8,Book Shop,Europe
-9,Discs Shop,Europe
-7,Fan Shop,Pacific Asia
-10,Technology,Pacific Asia
-11,Pet Shop,Pacific Asia
-12,Health and Beauty ,Pacific Asia
-9,Discs Shop,Pacific Asia
-7,Fan Shop,USCA
-8,Book Shop,Pacific Asia
+DepartmentName,Market
+Fitness,Pacific Asia
+Apparel,Pacific Asia
+Golf,Pacific Asia
+Footwear,USCA
+Apparel,USCA
+Footwear,Africa
+Golf,Africa
+Outdoors,Africa
+Footwear,Europe
+Apparel,Europe
+Golf,Europe
+Outdoors,Europe
+Footwear,LATAM
+Apparel,LATAM
+Golf,LATAM
+Outdoors,LATAM
+Fan Shop,LATAM
+Fitness,LATAM
+Apparel,Africa
+Fan Shop,Africa
+Technology,Europe
+Fitness,Europe
+Golf,USCA
+Outdoors,USCA
+Fitness,Africa
+Footwear,Pacific Asia
+Outdoors,Pacific Asia
+Fitness,USCA
+Fan Shop,Europe
+Book Shop,Europe
+Discs Shop,Europe
+Fan Shop,Pacific Asia
+Technology,Pacific Asia
+Pet Shop,Pacific Asia
+Health and Beauty ,Pacific Asia
+Discs Shop,Pacific Asia
+Fan Shop,USCA
+Book Shop,Pacific Asia

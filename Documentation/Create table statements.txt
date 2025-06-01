@@ -1,0 +1,78 @@
+-- =====================================
+-- Dimension: Customer
+-- =====================================
+CREATE TABLE dbo.DimCustomer (
+    CustomerId        INT PRIMARY KEY,
+    CustomerSegment   NVARCHAR(50),
+    CustomerCountry   NVARCHAR(50),
+    CustomerState     NVARCHAR(50),
+    CustomerCity      NVARCHAR(100),
+    CustomerStreet    NVARCHAR(100),
+    CustomerZipcode   NVARCHAR(20)
+);
+-- =====================================
+-- Dimension: Product
+-- =====================================
+CREATE TABLE dbo.DimProduct (
+    ProductCardId     INT PRIMARY KEY,      
+    ProductCategoryId INT,
+    CategoryName      NVARCHAR(100),
+    ProductName       NVARCHAR(100),
+    ProductPrice      DECIMAL(18,2),
+    ProductStatus     BIT
+);
+-- =====================================
+-- Dimension: Department
+-- =====================================
+CREATE TABLE dbo.DimDepartment (
+    DepartmentId      INT IDENTITY(1,1) PRIMARY KEY,
+    DepartmentName    NVARCHAR(100),
+    Market            NVARCHAR(100)
+);
+-- =====================================
+-- Dimension: Location
+-- =====================================
+CREATE TABLE dbo.DimLocation (
+    LocationId        INT IDENTITY(1,1) PRIMARY KEY,
+    OrderRegion       NVARCHAR(100),
+    OrderCity         NVARCHAR(100),
+    OrderState        NVARCHAR(100),
+    OrderCountry      NVARCHAR(100)
+);
+-- =====================================
+-- Dimension: Shipping
+-- =====================================
+CREATE TABLE dbo.DimShipping (
+    ShippingId              INT IDENTITY(1,1) PRIMARY KEY,
+    ShippingMode            NVARCHAR(50),
+    DaysForShippingReal     INT,
+    DaysForShipmentScheduled INT
+);
+-- =====================================
+-- Dimension: Order Status
+-- =====================================
+CREATE TABLE dbo.DimOrderStatus (
+    OrderStatusId   INT IDENTITY(1,1) PRIMARY KEY,
+    OrderStatus     NVARCHAR(50)
+);
+
+-- =====================================
+-- Dimension: Transaction Type
+-- =====================================
+CREATE TABLE dbo.DimTransactionType (
+    TypeId  INT IDENTITY(1,1) PRIMARY KEY,
+    Type               NVARCHAR(20)
+);
+-- =====================================
+-- Dimension: Date
+-- =====================================
+CREATE TABLE dbo.DimDate (
+    DateId         DATE PRIMARY KEY,
+    Year           INT,
+    Quarter        INT,
+    Month          INT,
+    MonthName      NVARCHAR(20),
+    Day            INT,
+    DayOfWeek      INT,
+    DayName        NVARCHAR(20)
+);
