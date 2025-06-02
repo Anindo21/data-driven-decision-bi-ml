@@ -76,3 +76,55 @@ CREATE TABLE dbo.DimDate (
     DayOfWeek      INT,
     DayName        NVARCHAR(20)
 );
+
+-- =============================================
+-- Fact Table: FactOrderItem
+-- =============================================
+CREATE TABLE dbo.FactOrderItem (
+    FactOrderItemId        INT IDENTITY(1,1) PRIMARY KEY,
+    OrderId                INT,
+    OrderItemId            INT,
+    CustomerId             INT,    -- FK to DimCustomer
+    ProductCardId          INT,    -- FK to DimProduct (business key, not surrogate)
+    DepartmentId           INT,    -- FK to DimDepartment (surrogate key)
+    LocationId             INT,    -- FK to DimLocation (surrogate key)
+    ShippingId             INT,    -- FK to DimShipping (surrogate key)
+    OrderStatusId          INT,    -- FK to DimOrderStatus (surrogate key)
+    TypeId                 INT,    -- FK to DimTransactionType (surrogate key)
+    OrderDateId            DATE,   -- FK to DimDate (date PK)
+    ShippingDateId         DATE,   -- FK to DimDate (date PK)
+    OrderItemQuantity      INT,
+    OrderItemDiscount      DECIMAL(18,2),
+    OrderItemDiscountRate  DECIMAL(10,6),
+    OrderItemProductPrice  DECIMAL(18,2),
+    OrderItemProfitRatio   DECIMAL(10,6),
+    Sales                  DECIMAL(18,2),
+    OrderItemTotal         DECIMAL(18,2),
+    Benefitperorder        DECIMAL(18,2),
+    OrderProfitPerOrder    DECIMAL(18,2),
+    DeliveryStatus         NVARCHAR(50),
+    Late_delivery_risk     BIT,
+
+    -- Foreign Key Constraints
+    FOREIGN KEY (CustomerId)        REFERENCES dbo.DimCustomer(CustomerId),
+    FOREIGN KEY (ProductCardId)     REFERENCES dbo.DimProduct(ProductCardId),
+    FOREIGN KEY (DepartmentId)      REFERENCES dbo.DimDepartment(DepartmentId),
+    FOREIGN KEY (LocationId)        REFERENCES dbo.DimLocation(LocationId),
+    FOREIGN KEY (ShippingId)        REFERENCES dbo.DimShipping(ShippingId),
+    FOREIGN KEY (OrderStatusId)     REFERENCES dbo.DimOrderStatus(OrderStatusId),
+    FOREIGN KEY (TypeId)            REFERENCES dbo.DimTransactionType(TypeId),
+    FOREIGN KEY (OrderDateId)       REFERENCES dbo.DimDate(DateId),
+    FOREIGN KEY (ShippingDateId)    REFERENCES dbo.DimDate(DateId)
+);
+
+
+-- Indexes for performance 
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_DepartmentId ON dbo.FactOrderItem(DepartmentId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_ProductCardId ON dbo.FactOrderItem(ProductCardId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_CustomerId ON dbo.FactOrderItem(CustomerId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_LocationId ON dbo.FactOrderItem(LocationId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_ShippingId ON dbo.FactOrderItem(ShippingId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_OrderStatusId ON dbo.FactOrderItem(OrderStatusId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_TypeId ON dbo.FactOrderItem(TypeId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_OrderDateId ON dbo.FactOrderItem(OrderDateId);
+CREATE NONCLUSTERED INDEX idx_FactOrderItem_ShippingDateId ON dbo.FactOrderItem(ShippingDateId);

@@ -1,0 +1,131 @@
+-- =====================================
+-- Dimension: Customer
+-- =====================================
+
+INSERT INTO dbo.DimCustomer (
+    CustomerId, CustomerSegment, CustomerCountry, CustomerState, CustomerCity, CustomerStreet, CustomerZipcode
+)
+SELECT DISTINCT
+    CustomerId, CustomerSegment, CustomerCountry, CustomerState, CustomerCity, CustomerStreet, CustomerZipcode
+FROM dbo.DimCustomerDF;
+
+-- =====================================
+-- Dimension: Product
+-- =====================================
+
+
+INSERT INTO dbo.DimProduct (ProductCardId, ProductCategoryId, CategoryName, ProductName, ProductPrice, ProductStatus)
+SELECT DISTINCT ProductCardId, ProductCategoryId, CategoryName, ProductName, ProductPrice, ProductStatus
+FROM dbo.DimProductDF;
+
+-- =====================================
+-- Dimension: Department
+-- =====================================
+
+INSERT INTO dbo.DimDepartment (DepartmentName, Market)
+SELECT DISTINCT DepartmentName, Market
+FROM dbo.DimDepartmentDF;
+
+-- =====================================
+-- Dimension: location
+-- =====================================
+
+INSERT INTO dbo.DimLocation (OrderRegion, OrderCity, OrderState, OrderCountry)
+SELECT DISTINCT OrderRegion, OrderCity, OrderState, OrderCountry
+FROM dbo.DimLocationDF;
+
+-- =====================================
+-- Dimension: Shipping
+-- =====================================
+
+INSERT INTO dbo.DimShipping (ShippingMode, DaysForShippingReal, DaysForShipmentScheduled)
+SELECT DISTINCT ShippingMode, DaysForShippingReal, DaysForShipmentScheduled
+FROM dbo.DimShippingDF;
+
+-- =====================================
+-- Dimension: OrderStatus
+-- =====================================
+
+INSERT INTO dbo.DimOrderStatus (OrderStatus)
+SELECT DISTINCT OrderStatus
+FROM dbo.DimOrderStatusDF;
+
+-- =====================================
+-- Dimension: TransactionType
+-- =====================================
+
+INSERT INTO dbo.DimTransactionType (Type)
+SELECT DISTINCT Type
+FROM dbo.DimTransactionTypeDF;
+
+-- =============================================
+-- Fact Table: FactOrderItem
+-- =============================================
+
+INSERT INTO dbo.FactOrderItem (
+    OrderId,
+    OrderItemId,
+    CustomerId,
+    ProductCardId,
+    DepartmentId,
+    LocationId,
+    ShippingId,
+    OrderStatusId,
+    TypeId,
+    OrderDateId,
+    ShippingDateId,
+    OrderItemQuantity,
+    OrderItemDiscount,
+    OrderItemDiscountRate,
+    OrderItemProductPrice,
+    OrderItemProfitRatio,
+    Sales,
+    OrderItemTotal,
+    Benefitperorder,
+    OrderProfitPerOrder,
+    DeliveryStatus,
+    Late_delivery_risk
+)
+SELECT
+    f.OrderId,
+    f.OrderItemId,
+    f.CustomerId,
+    f.ProductCardId,           -- Use as is, ties directly to DimProduct
+    d.DepartmentId,            -- From join to DimDepartment
+    l.LocationId,              -- From join to DimLocation
+    s.ShippingId,              -- From join to DimShipping
+    o.OrderStatusId,           -- From join to DimOrderStatus
+    t.TypeId,                  -- From join to DimTransactionType
+    od.DateId AS OrderDateId,  -- Order date
+    sd.DateId AS ShippingDateId, -- Shipping date
+    f.OrderItemQuantity,
+    f.OrderItemDiscount,
+    f.OrderItemDiscountRate,
+    f.OrderItemProductPrice,
+    f.OrderItemProfitRatio,
+    f.Sales,
+    f.OrderItemTotal,
+    f.Benefitperorder,
+    f.OrderProfitPerOrder,
+    f.DeliveryStatus,
+    f.Late_delivery_risk
+FROM dbo.FactOrderItemDF AS f
+JOIN dbo.DimDepartment d
+    ON f.DepartmentName = d.DepartmentName AND f.Market = d.Market
+JOIN dbo.DimLocation l
+    ON f.OrderCity = l.OrderCity
+   AND f.OrderState = l.OrderState
+   AND f.OrderCountry = l.OrderCountry
+JOIN dbo.DimShipping s
+    ON f.ShippingMode = s.ShippingMode
+   AND f.DaysForShippingReal = s.DaysForShippingReal
+   AND f.DaysForShipmentScheduled = s.DaysForShipmentScheduled
+JOIN dbo.DimOrderStatus o
+    ON f.OrderStatus = o.OrderStatus
+JOIN dbo.DimTransactionType t
+    ON f.Type = t.Type
+JOIN dbo.DimDate od
+    ON f.orderdate_DateOrders = od.DateId
+JOIN dbo.DimDate sd
+    ON f.shippingdate_DateOrders = sd.DateId
+;
