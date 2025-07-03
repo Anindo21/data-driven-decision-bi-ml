@@ -39,7 +39,7 @@ SELECT DISTINCT
     Day,
     DayOfWeek,
     DayName
-FROM dbo.DimDataDf;
+FROM dbo.DimDateDf;
 -- =====================================
 -- Dimension: Department
 -- =====================================
@@ -133,7 +133,7 @@ SELECT
     f.Late_delivery_risk
 FROM dbo.FactOrderItemDF AS f
 JOIN dbo.DimDepartment d
-  ON f.DepartmentId = d.DepartmentId
+    ON f.DepartmentName = d.DepartmentName AND f.Market = d.Market
 JOIN dbo.DimLocation l
     ON f.OrderCity = l.OrderCity
    AND f.OrderState = l.OrderState
